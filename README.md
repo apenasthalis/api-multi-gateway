@@ -13,7 +13,7 @@ Este documento está composto em tópicos, respectivamente:
 10: Conclusão
 
 ## 2. Objetivo
-      Em uma era voltada em quase 100% para a tecnologia, existem diversos problemas e dificuldades para o continuamento dessa engrenagem, um deles se reside nos pagamentos e consultas bancárias online onde existem muitas agências que não possuem assistências físicas, forçando o usuário e as empresas a se adequarem ao "novo". Tendo em vista tais afirmações, nós desenvolvemos uma aplicação multi-gateway para solucionar alguns problemas: Consultas onlines e pagamentos, Os usuários não possuirão registro apenas em um banco, podendo ser multíplas as integrações com as intituições e entre outros problemas. 
+Em uma era voltada em quase 100% para a tecnologia, existem diversos problemas e dificuldades para o continuamento dessa engrenagem, um deles se reside nos pagamentos e consultas bancárias online onde existem muitas agências que não possuem assistências físicas, forçando o usuário e as empresas a se adequarem ao "novo". Tendo em vista tais afirmações, nós desenvolvemos uma aplicação multi-gateway para solucionar alguns problemas: Consultas onlines e pagamentos, Os usuários não possuirão registro apenas em um banco, podendo ser multíplas as integrações com as intituições e entre outros problemas. 
 
 ## 3. Stack Técnica
 - Linguagem de programação: PHP
