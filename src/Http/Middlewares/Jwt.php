@@ -43,6 +43,7 @@ class Jwt
 
     public static function verify($jwt)
     {
+        if (empty($jwt)) return false;
         $tokenPartials = explode('.', $jwt);
         if (count($tokenPartials) != 3) return false;
         [$header, $payload, $signature] = $tokenPartials;

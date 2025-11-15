@@ -2,25 +2,27 @@
 
 namespace App\Core;
 
+use App\Exceptions\Exceptions;
 use App\Http\Request;
 use App\Http\Response;
 
 class Core
 {
+
+    
     public static function dispatch(array $routes)
     {
-
         isset($_GET['url']) && $url = $_GET['url'];
-        $url !== '/' && $url = rtrim($url, '/');
-
+        if ($url !== '/') {
+            $url = rtrim($url, '/');
+        }
         $prefixController = 'App\\Http\\Controllers\\';
-
+        $prefixMiddleware = 'App\\Http\\Middlewares\\';
         $routeFound = false;
         foreach ($routes as $route) {
             $pattern = '#^' . preg_replace('/{id}/', '([\w-]+)', $route['path']) . '$#';
-            if (preg_match($pattern, $url, $matches)) {
+            if (preg_match($pattern, $url, $matches) && $route['method'] == Request::method()) {
                 array_shift($matches);
-                
                 $routeFound = true;
                 if ($route['method'] !== Request::method()) {
                     Response::json([
@@ -30,9 +32,19 @@ class Core
                     ], 405);
                     return;
                 }
-
+                foreach ($route['middleware'] as $middleware) {
+                    try {
+                        $middleware = ucfirst($middleware);
+                        $aliasMiddlewares = $prefixMiddleware . $middleware;
+                        $extendMiddleware = new $aliasMiddlewares();
+                        $extendMiddleware->handle();
+                    } catch (Exceptions $e) {
+                        Exceptions::jsonResponse(['error' => $e->getMessage()], $e->getCode());
+                    } catch (\Exception $e) {
+                        Exceptions::jsonResponse(['error' => 'An unexpected error occurred.'], 500);
+                    }
+                }
                 [$controller, $action] = explode('@', $route['action']);
-    
                 $controller = $prefixController . $controller;
                 $extendController = new $controller();
                 $extendController->$action(new Request, new Response, $matches);
