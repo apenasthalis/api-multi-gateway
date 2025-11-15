@@ -1,7 +1,7 @@
 <?php 
 
 require_once "../vendor/autoload.php";
-require_once "./routes/api.php";
+require_once "./Routes/api.php";
 
 use App\Core\Core;
 use App\Http\Route;
