@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nginx:
     build:
@@ -8,38 +6,25 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./src:/var/www/html/crud/
+      - ./src:/var/www/html/api-multigateway/src
     ports:
-      - "8070:8070"
+      - "8080:8080"
     depends_on:
       - php
     networks:
-     - orm-network
+     - payment-network
 
   php:
     build:
       context: .
       dockerfile: Dockerfile.php
     volumes:
-      - .:/var/www/html/crud
+      - .:/var/www/html/api-multigateway/
     ports:
       - "9001:9003"
     networks:
-     - orm-network
-
-  postgres:
-    image: postgres:latest
-    container_name: postgres_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-     - orm-network
-
-volumes:
-  pgdata:
+     - payment-network
 
 networks:
-  orm-network:
+  payment-network:
     driver: bridge
