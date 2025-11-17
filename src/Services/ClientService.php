@@ -102,23 +102,15 @@ class ClientService
     public static function update(array $data)
     {
         try {
-            // if (isset($authorization['error'])) {
-            //     return ['error' => $authorization['error']];
-            // }
-
-            // $userFromJwt = JWT::verify($authorization);
-
-            // if (!$userFromJwt) return ['error' => 'Please, login to access this resource.'];
-
             $fields = Validator::validate([
-                'id' => $data['id'],
+                'uuid' => $data['uuid'],
                 'name' => $data['name'] ?? '',
                 'email' => $data['email'] ?? '',
                 'password' => $data['password'] ?? '',
 
             ]);
             $clientModel = new Client();
-
+            $fields['password'] = password_hash($fields['password'], PASSWORD_DEFAULT);
             $client = $clientModel->update($fields);
 
             if (!$client) return ["error" => "Sorry, we could not update your account"];

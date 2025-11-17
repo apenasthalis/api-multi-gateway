@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Library\Crud;
+use App\Utils\Env;
 use PDO;
 
 class Database
 {
-    const DBDRIVE = 'pgsql';
-    const DBHOST = 'localhost';
-    const DBPORT = '5432';
-    const DBNAME = 'spotifaux';
-    const DBUSER = 'pericao';
-    const DBPASS = '123';
-
     public static function getConnection()
     {
-        $connPdo = new PDO("pgsql:host=postgres_db;port=5432;dbname=spotifaux", "pericao", "123");
+        $dbDrive = 'pgsql';
+        $dbHost = getenv('DB_HOST');
+        $dbPort = getenv('DB_PORT');
+        $dbName = getenv('DB_NAME');
+        $dbUser = getenv('DB_USERNAME');
+        $dbPass = getenv('DB_PASSWORD');
+    
+        $connPdo = new PDO("pgsql:host=192.168.1.109;port=5434;dbname=payment_control",
+         "postgres", "root");
         return $connPdo;
     }
 }

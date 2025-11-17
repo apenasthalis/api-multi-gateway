@@ -42,7 +42,7 @@ class Client extends Model
 
     public function update($data)
     {
-        return $this->crud->update($data, $this->table, $this->columns);
+        return $this->crud->updateByUUID($data, $this->table, $this->columns);
     }
 
     public function delete()
