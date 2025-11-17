@@ -24,7 +24,7 @@ class Request
     {
         $authorization = getallheaders();
         
-        if (!isset($authorization['Authorization'])) return ['error' => 'Sorry, no authorization header provided'];
+        if (!isset($authorization['Authorization'])) return false;
         
         $authorizationPartials = explode(' ', $authorization['Authorization']);
 

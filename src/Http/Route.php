@@ -47,6 +47,16 @@ class Route
         ];
     }
 
+    public static function patch(string $path, string $action)
+    {
+        self::$routes[] = [
+            'path' => $path,
+            'action' => $action,
+            'method' => 'PATCH',
+            'middleware' => self::$middleware,
+        ];
+    }
+
     public static function getRoutes()
     {
         return self::$routes;

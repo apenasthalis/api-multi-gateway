@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Library\Crud;
 
@@ -8,7 +8,7 @@ use App\Library\Crud\Select;
 class Crud extends Database
 {
     protected $pdo;
-    protected $librarySelect; 
+    protected $librarySelect;
     private $select;
 
     public function __construct()
@@ -18,7 +18,7 @@ class Crud extends Database
 
     public function prepareSql($data)
     {
-        $columnsString = $this->prepareColumns($data->alias,$data->columns);
+        $columnsString = $this->prepareColumns($data->alias, $data->columns);
         $columns = $columnsString ?? $data->allColumns;
         $select = "SELECT {$columns} FROM " . $data->from;
         $select .= $this->prepareJoin($data->join);
@@ -56,7 +56,7 @@ class Crud extends Database
         return $select;
     }
 
-    public function prepareColumnsJoin($alias,$columns)
+    public function prepareColumnsJoin($alias, $columns)
     {
         if ($columns == '*') {
             return "{$alias}.{$columns}";
@@ -75,7 +75,7 @@ class Crud extends Database
         }
         return $finalOrders . implode(', ', $orders);
     }
-    
+
 
     public function getRegisters($query): array
     {
@@ -100,18 +100,25 @@ class Crud extends Database
         return $data['id'];
     }
 
-    public function delete()
+    public function updateByUUID($data, $table, $columns)
     {
-        
-    }
-    
-    public function fetchRow()
-    {
+        $libraryUpdate = new Update();
+        $libraryUpdate->updateByUUID($data, $table, $columns);
 
+        return $data['uuid'];
     }
 
-    public function fetchAll()
+    public function updateByPaymentId($data, $table, $columns)
     {
-        
+        $libraryUpdate = new Update();
+        $libraryUpdate->updateByPaymentId($data, $table, $columns);
+
+        return $data['payment_id'];
     }
+
+    public function delete() {}
+
+    public function fetchRow() {}
+
+    public function fetchAll() {}
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Library\Crud;
 
@@ -18,10 +18,19 @@ class Insert extends Crud
                 {$table} ({$prepareData['finalColumns']})
             VALUES
                 ({$prepareData['placeHolders']})
+            RETURNING *
         ");
 
         if ($stmt->execute($prepareData['filteredData'])) {
-            return $this->pdo->lastInsertId() > 0 ? true : false;
+
+            $insertedRow = $stmt->fetch($this->pdo::FETCH_ASSOC);
+
+            if ($insertedRow) {
+                return $insertedRow;
+            }
+
+            return false;
         }
+        return false;
     }
 }

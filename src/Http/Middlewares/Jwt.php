@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Middlewares;
 
@@ -8,8 +8,6 @@ use App\Library\Crud\Select;
 
 class Jwt
 {
-    private static string $secret = "LOBISOMEN";
-
     public function handle()
     {
         $request = new Request();
@@ -19,7 +17,7 @@ class Jwt
             throw new Exceptions("Sorry, we could not authenticate you.", 401);
         }
         $arrayDataJwt = json_decode($dataFromJwt, true);
-        $userFromJwt =$this->userFromJwt($arrayDataJwt['id']);
+        $userFromJwt = $this->userFromJwt($arrayDataJwt['id']);
         return $userFromJwt;
     }
 
@@ -37,7 +35,8 @@ class Jwt
 
     public static function signature(string $header, string $payload)
     {
-        $signature = hash_hmac('sha256', $header . "." . $payload, self::$secret, true);
+        $secret = getenv('SECRET_KEY_JWT');
+        $signature = hash_hmac('sha256', $header . "." . $payload, $secret, true);
         return self::base64url_encode($signature);
     }
 
@@ -73,10 +72,10 @@ class Jwt
     public function userFromJwt($idJwt)
     {
         $select = new Select();
-        $query = $select->select(['id','name','password'])
-        ->from('public', ['c' => 'client'])
-        ->where("id = {$idJwt}")
-        ->get();
+        $query = $select->select(['id', 'name', 'password'])
+            ->from('public', ['c' => 'client'])
+            ->where("id = {$idJwt}")
+            ->get();
         return $query;
     }
 }
