@@ -269,6 +269,9 @@ Não visualizamos a documentação que estava no formulários, devido ao mal ent
 O banco utilizado foi o postgres, o escolhemos pela familiaridade e por ser um banco relacional. Deixando claro que o autor possui experiência em MySql.
 Não há frameworks, o autor possui experiência em laravel, mas como mecionado, não tinha a informação de que era permitido, pois não visualizou a documentação inicial. Não foi utizado TDD pelo mesmo motivo.
 
+## 11. Observações Pessoais:
+O conteúdo sobre api multi-gateway é um pouco vago na internet, baseei em minhas próprias interpretações para o desenvolvimento desse projeto, como mencionado no tópico 8 da camada "extra", a ideia incial era utilizar os agentes de pagamentos em hosts separados, pois seria simples de gerenciar a atividade de todos os gateways presentes no projeto. Me diverti bastante com este projeto, fui desatento ao não perceber que havia uma documentação e ainda consigo me sentir orgulhoso pelo que eu fiz em poucos dias. O que havia na documentação facilitaria muito o meu desenvolvimento, porém coisas foras de nossas previsões acontecem.
+
 **FIM DA APLICAÇÃO** 
 
 Autor: Thalis Gabriel
