@@ -263,6 +263,12 @@ Response:
 }
 ``` 
 
+## 10. Observacações:
+Não visualizamos a documentação que estava no formulários, devido ao mal entendido, pensamos que haveria apenas uma página, porém existia a documentação após o submit, por isso há algumas discordâncias, que serão descritas nesta camada;
+
+O banco utilizado foi o postgres, o escolhemos pela familiaridade e por ser um banco relacional. Deixando claro que o autor possui experiência em MySql.
+Não há frameworks, o autor possui experiência em laravel, mas como mecionado, não tinha a informação de que era permitido, pois não visualizou a documentação inicial. Não foi utizado TDD pelo mesmo motivo.
+
 **FIM DA APLICAÇÃO** 
 
 Autor: Thalis Gabriel
